@@ -1,0 +1,475 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  font-family: "Bodoni Moda", serif;
+}
+.font-cursive {
+  font-family: "Dancing Script", cursive;
+}
+body {
+  min-height: 100vh;
+}
+
+footer,
+.drop-down,
+.dropDown > ul > li > div,
+.checkBox,
+.menu,
+.suggestions,
+.cards,
+.sellerSignUp,
+.faq,
+.hero-gift,
+.fe-car {
+  background-image: url("./assets/images/pngwing.com.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dropDown > ul {
+  position: relative;
+  transform: rotate(0deg);
+}
+.dropDown > ul > li {
+  padding: 0.625rem;
+}
+.dropDown > ul > li > a {
+  display: block;
+}
+.dropDown > ul > li > div {
+  position: fixed;
+  top: 100%;
+  left: -30px;
+  right: 0;
+  width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  margin-left: auto;
+  background-color: #fceee8;
+  line-height: 1.875rem;
+  padding: 20px;
+  padding-top: 1.875rem;
+  justify-content: space-around;
+  line-height: 2.3;
+  display: none;
+}
+.dropDown > ul > li:hover > div {
+  display: flex;
+}
+.dropDown > ul > li > div > ul > li > a {
+  color: #000;
+  text-decoration: none;
+}
+
+@media (min-width: 480px) and (max-width: 600px) {
+  .name {
+    font-size: xx-small;
+  }
+}
+
+/*checkBox*/
+.checkBox {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+}
+
+input[type="radio"] {
+  appearance: none;
+  background-color: #f4d7ca;
+  border: 2px solid #a9115036;
+  border-radius: 4px;
+  outline: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  position: relative;
+}
+
+input[type="radio"]:checked {
+  background-color: #a91151;
+  border-color: #a91151;
+}
+
+input[type="radio"]:focus {
+  box-shadow: 0 0 0 1px #f4d7ca;
+}
+
+input[type="radio"]::after {
+  content: "\2713";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 900;
+  color: #fff;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="radio"]:checked::after {
+  opacity: 1;
+}
+
+label[for] {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+/*filter pop up transition*/
+
+.pop-up-enter {
+  transform: scale(0.9);
+  opacity: 0;
+  transform-origin: center;
+}
+
+.pop-up-enter-active {
+  transform: scale(1);
+  opacity: 1;
+  transition: all 300ms ease-in;
+  transform-origin: center;
+}
+
+.pop-up-exit {
+  transform: scale(1);
+  opacity: 1;
+  transform-origin: center;
+}
+
+.pop-up-exit-active {
+  transform: scale(0.9);
+  opacity: 0;
+  transition: all 300ms ease-out;
+  transform-origin: center;
+}
+
+/* Define a CSS variable for the slider thumb position */
+:root {
+  --thumb-position: 0%;
+  --beige: #fceee8;
+  --pink: #a91151;
+  --brown: #af4e24;
+}
+
+.slider {
+  -webkit-appearance: none;
+  background-color: #f4d7ca;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: var(--pink);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: calc(
+    var(--thumb-position) - var(--thumb-position) *
+      (20 / (100 + (100 / (100 / var(--thumb-position)))))
+  );
+}
+
+.underline {
+  position: absolute;
+  left: 50%;
+  bottom: 0.4375rem;
+  width: 0px;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+.pink-underline {
+  position: absolute;
+  left: 50%;
+  bottom: 0.4375rem;
+  width: 0px;
+  height: 2px;
+  background-color: var(--pink);
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+.hovered .pink-underline,
+.hovered.pink-underline {
+  width: 100%;
+  left: 0;
+}
+.active .pink-underline2 {
+  position: absolute;
+  left: 0;
+  bottom: 0.4375rem;
+  width: 100%;
+  height: 2px;
+  background-color: var(--pink);
+  transition: width 0.3s ease-in-out, left 1s ease-in-out;
+}
+.hovered .underline {
+  width: 100%;
+  left: 0;
+}
+.active .underline2 {
+  position: absolute;
+  left: 0;
+  bottom: 0.4375rem;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease-in-out, left 1s ease-in-out;
+}
+.drop-down {
+  width: 90%;
+  margin: auto;
+  top: 100%;
+}
+
+.heroimg {
+  opacity: 0.5;
+}
+.mosaic {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+.mosaic-item1 {
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 2;
+}
+.mosaic-item2 {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 2;
+}
+/* YourComponent.css */
+
+.flip-container {
+  perspective: 1000px;
+  /* display: inline-block; */
+}
+
+.flip-container:hover .flipper {
+  transform: rotateY(180deg);
+}
+
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+}
+
+.front,
+.back {
+  width: 550px;
+  height: 600px;
+  backface-visibility: hidden;
+}
+
+.front {
+  position: absolute;
+  z-index: 2;
+}
+
+.back {
+  transform: rotateY(180deg);
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating-cosmetic {
+  animation: float 3s infinite ease-in-out;
+}
+.spinner {
+  position: relative;
+  width: 56px;
+  height: 56px;
+}
+.spinner::before,
+.spinner::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  animation: spinner-rfi6tk 1s infinite linear;
+  box-sizing: border-box;
+  border: 11.2px solid rgba(169, 17, 81, 0.1);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.spinner::before {
+  animation-direction: reverse;
+  border-right-color: #a91151;
+  right: calc(50% - 5.6px);
+}
+
+.spinner::after {
+  border-left-color: #a91151;
+  left: calc(50% - 5.6px);
+}
+
+.container1 {
+  cursor: pointer;
+}
+
+.container1 input {
+  display: none;
+}
+
+.container1 svg {
+  overflow: visible;
+}
+
+.path {
+  fill: none;
+  stroke: black;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  stroke-dasharray: 241 9999999;
+  stroke-dashoffset: 0;
+}
+
+.container1 input:checked ~ svg .path {
+  stroke-dasharray: 70.5096664428711 9999999;
+  stroke-dashoffset: -262.2723388671875;
+}
+
+@keyframes spinner-rfi6tk {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.indexedStep {
+  color: rgb(190, 190, 190);
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(206, 206, 206);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.indexedStep.accomplished {
+  background-color: #a91151;
+  color: white;
+  border-style: none;
+}
+
+.RSPBprogressBar {
+  height: 2px;
+  width: 30%;
+  line-height: 1;
+  border-radius: 10px;
+  position: relative;
+  background-color: rgb(207, 207, 207);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 0;
+  margin: 20px auto;
+}
+
+.RSPBprogressBar .RSPBstep {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  position: absolute;
+  transform: translateX(-50%);
+  transition-property: all;
+  transition-timing-function: ease;
+}
+
+.RSPBprogressBar .RSPBprogressBarText {
+  color: white;
+  font-size: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.RSPBprogressBar .RSPBprogression {
+  position: absolute;
+  transition: width 0.3s ease;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 10px;
+  background: #a91151;
+  z-index: -1;
+}
+
+@media screen and (max-width: 480px) {
+  .indexedStep {
+    width: 15px;
+    height: 15px;
+    font-size: 6px;
+  }
+}
+
+.-z-1 {
+  z-index: -1;
+}
+
+.origin-0 {
+  transform-origin: 0%;
+}
+
+.input1:focus ~ label,
+.input1:not(:placeholder-shown) ~ label,
+.textarea1:focus ~ label,
+.textarea1:not(:placeholder-shown) ~ label,
+.select1:focus ~ label,
+.select1:not([value=""]):valid ~ label {
+  /* @apply transform; scale-75; -translate-y-6; */
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  --tw-scale-x: 0.75;
+  --tw-scale-y: 0.75;
+  --tw-translate-y: -1.5rem;
+}
+
+.input1:focus ~ label,
+.select1:focus ~ label {
+  /* @apply text-black; left-0; */
+  --tw-text-opacity: 1;
+  color: rgba(0, 0, 0, var(--tw-text-opacity));
+  left: 0px;
+}
+
