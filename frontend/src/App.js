@@ -16,6 +16,7 @@ import {
   GiftPackagePage,
   ProfilePage,
   CheckoutPage,
+  PaymentPage,
   PrivacyPolicyPage,
   PaymentPage,
   FeaturedProductsPage,
