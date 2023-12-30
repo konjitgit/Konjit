@@ -22,6 +22,8 @@ import {
   SellerProfilePage,
   ShopHomePage,
   UserInbox,
+  ResetPassword,
+  PasswordActivationPage,
 } from "./routes/Routes.js";
 
 import {
@@ -65,7 +67,11 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
-
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route
+            path="/activation:activation_token"
+            element={<PasswordActivationPage />}
+          />
           <Route path="/products-page" element={<FeaturedProductsPage />} />
           <Route path="/products" element={<ProductPage />} />
           <Route path="/product/:name" element={<ProductDetailsPage />} />
@@ -91,6 +97,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <CheckoutPage />
+              </ProtectedRoute>
+            }
+          />
+            <Route
+            path="/payment"
+            element={
+              <ProtectedRoute>
+                <PaymentPage />
               </ProtectedRoute>
             }
           />
