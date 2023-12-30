@@ -13,6 +13,7 @@ import FaqPage from "../pages/FaqPage";
 import GiftPackagePage from "../pages/GiftPackagePage";
 import ProfilePage from "../pages/ProfilePage";
 import CheckoutPage from "../pages/CheckoutPage";
+import PaymentPage from "../pages/PaymentPage.jsx";
 import FeaturedProductsPage from "../pages/FeaturedProductsPage";
 import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
 import SellerProfilePage from "../pages/SellerProfilePage";
@@ -36,6 +37,7 @@ export {
   GiftPackagePage,
   ProfilePage,
   CheckoutPage,
+  PaymentPage,
   FeaturedProductsPage,
   PrivacyPolicyPage,
   SellerProfilePage,
