@@ -18,6 +18,8 @@ import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
 import SellerProfilePage from "../pages/SellerProfilePage";
 import ShopHomePage from "../pages/Shop/ShopHomePage.jsx";
 import UserInbox from "../pages/UserInbox";
+import ResetPassword from "../pages/ResetPassword.jsx";
+import PasswordActivationPage from "../pages/PasswordActivationPage.jsx";
 export {
   LoginPage,
   SignUpPage,
@@ -39,4 +41,6 @@ export {
   SellerProfilePage,
   ShopHomePage,
   UserInbox,
+  ResetPassword,
+  PasswordActivationPage,
 };
