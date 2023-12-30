@@ -5,6 +5,8 @@ const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
 const userRouter = express.Router();
 const connectDatabase = require("../db/Database");
+const jwt = require("jsonwebtoken");
+const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
 const { isAuthenticated, isAdmin } = require("../middleware/auth");
 userRouter.post(
@@ -129,6 +131,115 @@ userRouter.post(
     }
   })
 );
+userRouter.post("/reset-password", async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    // const { payload } = req.body;
+    //const { email } = payload;
+    const user = await User.findOne({ email }).select("+password name email");
+
+    if (!user) {
+      return next(new ErrorHandler("User email does not exist", 400));
+    }
+    console.log(email);
+    console.log(user);
+
+    const activationToken = createActivationToken(user);
+    console.log(activationToken);
+    const activationUrl = `http://localhost:3000/activation/${activationToken}`;
+
+    try {
+      await sendMail({
+        email: user.email,
+        subject: "Activate your account",
+        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
+      });
+      res.status(201).json({
+        success: true,
+        message: `please check your email:- ${user.email} to activate your account!`,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 400));
+  }
+});
+// create activation token
+const createActivationToken = (user) => {
+  console.log(user)
+  return jwt.sign(user, process.env.ACTIVATION_SECRET, {
+    expiresIn: "15m",
+   //the problem seems to be here since the user is in but we cant get activation token
+  });
+};
+// check user token
+userRouter.post(
+  "/activation",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const { activation_token } = req.body;
+
+      const newUser = jwt.verify(
+        activation_token,
+        process.env.ACTIVATION_SECRET
+      );
+
+      if (!newUser) {
+        return next(new ErrorHandler("Invalid token", 400));
+      }
+      // const { name, email, password } = newUser;
+
+      // let user = await User.findOne({ email });
+
+      // if (user) {
+      //   return next(new ErrorHandler("User already exists", 400));
+      // }
+      // user = await User.create({
+      //   name,
+      //   email,
+      //   avatar,
+      //   password,
+      // });
+
+      // sendToken(user, 201, res);
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+userRouter.put(
+  "/change-new-password",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const { activation_token } = req.body;
+      const newUser = jwt.verify(
+        activation_token,
+        process.env.ACTIVATION_SECRET
+      );
+      const { email } = newUser;
+
+      let user = await User.findOne({ email });
+      if (req.body.newPassword !== req.body.confirmPassword) {
+        return next(
+          new ErrorHandler("Password doesn't matched with each other!", 400)
+        );
+      }
+      user.password = req.body.newPassword;
+
+      await user.save();
+      sendToken(user, 201, res);
+      res.status(200).json({
+        success: true,
+        message: "Password updated successfully!",
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+
 userRouter.get(
   "/getuser",
   isAuthenticated,
